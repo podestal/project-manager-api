@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 from . import models
 from . import serializers
 
 class ProjectViewSet(ModelViewSet):
+
+    permission_classes = [IsAuthenticated]
 
     def get_serializer_context(self):
         return {'user_id': self.request.user.id}
@@ -19,6 +22,8 @@ class ProjectViewSet(ModelViewSet):
     
 
 class TaskViewSet(ModelViewSet):
+
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return models.Task.objects.filter(project_id=self.kwargs['projects_pk'])
