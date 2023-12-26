@@ -4,8 +4,19 @@ from . import models
 from . import serializers
 
 class ProjectViewSet(ModelViewSet):
-    queryset = models.Project.objects.all()
-    serializer_class = serializers.ProjectSerializer
+
+    def get_serializer_context(self):
+        return {'user_id': self.request.user.id}
+    
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return serializers.CreateProjectSerializer
+        return serializers.ProjectSerializer
+    
+    def get_queryset(self):
+        return models.Project.objects.filter(user_id = self.request.user.id)
+    
+    
 
 class TaskViewSet(ModelViewSet):
 

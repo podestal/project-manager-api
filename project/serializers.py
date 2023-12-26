@@ -19,3 +19,12 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Project
         fields = '__all__'
+
+class CreateProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Project
+        fields = ['title', 'slug', 'description']
+
+    def create(self, validated_data):
+        user_id = self.context['user_id']
+        return models.Project.objects.create(user_id = user_id, **validated_data)
