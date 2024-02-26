@@ -12,21 +12,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n%kag%f3m*2+rjn0uftm+k@zv3z4-erj2mk4hxj!s%7jt0k&7$'
+SECRET_KEY = os.environ.get('KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['44.206.246.99']
 
 
 # Application definition
@@ -83,10 +86,10 @@ WSGI_APPLICATION = 'project_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'projects',
-        'HOST': 'myshares.cnmy06y44h6n.us-east-1.rds.amazonaws.com',
-        'USER': 'admin',
-        'PASSWORD': '13anguloX'
+        'NAME': os.environ.get('DB_AWS_NAME'),
+        'HOST': os.environ.get('DB_AWS_HOST'),
+        'USER': os.environ.get('DB_AWS_USER'),
+        'PASSWORD': os.environ.get('DB_AWS_PASSWORD')
     }
 }
 
@@ -148,4 +151,5 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://project-manager-podestal.s3-website-us-east-1.amazonaws.com"
 ]
