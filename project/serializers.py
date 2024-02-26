@@ -23,7 +23,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 class CreateProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Project
-        fields = ['title', 'slug', 'description']
+        fields = ['title', 'description']
 
     def create(self, validated_data):
         user_id = self.context['user_id']

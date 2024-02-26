@@ -6,7 +6,6 @@ from django.conf import settings
 class Project(models.Model):
 
     title = models.CharField(max_length=255)
-    slug = models.SlugField()
     description = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'projects',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': '13angulo'
+        'HOST': 'myshares.cnmy06y44h6n.us-east-1.rds.amazonaws.com',
+        'USER': 'admin',
+        'PASSWORD': '13anguloX'
     }
 }
 
